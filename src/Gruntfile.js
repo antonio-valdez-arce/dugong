@@ -1,0 +1,68 @@
+module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      build: {
+        src: ['libs/jquery/jquery-2.1.1.js', 
+              'libs/foundation/bower_components/foundation/js/foundation.min.js', 
+              'dugong/js/script.js'],
+
+        dest: '../dist/js/script.min.js'
+      },
+      modernizr: {
+        options: {
+          banner: '/* Modernizr v2.8.2 * www.modernizr.com * * Copyright (c) Faruk Ates, Paul Irish, Alex Sexton * Available under the BSD and MIT licenses: www.modernizr.com/license/*/',
+        },
+        files: { 
+          '../dist/js/vendor/modernizr.min.js' : 'libs/foundation/bower_components/modernizr/modernizr.js' 
+        }
+        
+      }
+    },
+
+    sass: {                              // Task
+      dist: {                            // Target
+        options: {                       // Target options
+          style: 'compressed'
+        },
+        files: {                         // Dictionary of files
+          'dugong/css/styles.css': ['dugong/sass/styles.scss'],       // 'destination': 'source'
+         }
+      }
+    },
+
+    concat: {
+      options: {
+        separator: '',
+      },
+      dist: {
+        src: ['libs/foundation/bower_components/foundation/css/foundation.min.css','dugong/css/styles.css'],
+        dest: '../dist/css/styles.min.css',
+      },
+    },
+
+    watch: {
+      options: {
+        spawn: false,
+        livereload: true,
+      },
+      css: {
+        files: ['dugong/sass/*.scss', 'dugong/js/*.js', '../src/Gruntfile.js'],
+        tasks: ['uglify','sass','concat'],
+      },
+    },
+
+  });
+
+  // Load the plugins.
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+
+  // Default task(s).
+  grunt.registerTask('default', ['uglify','sass', 'concat', 'watch']);
+
+};
