@@ -5,8 +5,9 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     uglify: {
       build: {
-        src: ['libs/jquery/jquery-2.1.1.js', 
-              'libs/foundation/bower_components/foundation/js/foundation.min.js', 
+        src: [
+              'libs/foundation/js/vendor/jquery.js', 
+              'libs/foundation/js/foundation.min.js', 
               'dugong/js/script.js'],
 
         dest: '../dist/js/script.min.js'
@@ -16,7 +17,7 @@ module.exports = function(grunt) {
           banner: '/* Modernizr v2.8.2 * www.modernizr.com * * Copyright (c) Faruk Ates, Paul Irish, Alex Sexton * Available under the BSD and MIT licenses: www.modernizr.com/license/*/',
         },
         files: { 
-          '../dist/js/vendor/modernizr.min.js' : 'libs/foundation/bower_components/modernizr/modernizr.js' 
+          '../dist/js/vendor/modernizr.min.js' : 'libs/foundation/js/vendor/modernizr.js' 
         }
         
       }
@@ -38,7 +39,7 @@ module.exports = function(grunt) {
         separator: '',
       },
       dist: {
-        src: ['libs/foundation/bower_components/foundation/css/foundation.min.css','dugong/css/styles.css'],
+        src: ['libs/foundation/css/foundation.min.css','dugong/css/styles.css'],
         dest: '../dist/css/styles.min.css',
       },
     },
