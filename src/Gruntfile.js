@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         separator: '',
       },
       dist: {
-        src: ['libs/foundation/css/foundation.min.css','dugong/css/styles.css'],
+        src: ['libs/foundation/css/normalize.css','libs/foundation/css/foundation.min.css','dugong/css/styles.css'],
         dest: '../dist/css/styles.min.css',
       },
     },
